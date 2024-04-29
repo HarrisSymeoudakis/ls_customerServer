@@ -2,7 +2,7 @@
   "name": "ls-customer node js server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "customer_server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node customer_server.js"
