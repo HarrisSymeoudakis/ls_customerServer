@@ -8,6 +8,9 @@ app.post('/webhook', (req, res) => {
   // Assuming your JSON data is received in the req.body
   const jsonData = req.body;
 
+  // Log the JSON data
+  console.log('Received JSON data:', jsonData);
+
   // Assuming you want to send back the same JSON data received
   res.json(jsonData);
 
