@@ -27,6 +27,7 @@ app.get('/latest', (req, res) => {
 
 // Endpoint to make a GET request to the Swagger page with Basic Authentication
 app.get('/swagger', async (req, res) => {
+  console.log('inside swagger call, before call');
   try {
     // Encode username and password for Basic Authentication
     const username = '90478305_003_TEST\AI';
@@ -40,11 +41,13 @@ app.get('/swagger', async (req, res) => {
     };
 
     // Make a GET request to the Swagger page with defined headers
+	console.log('swagger before axios');
     const response = await axios.get('https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1?documentType=CustomerOrder&storeId=DE01&customerId=HQ00100001', { headers });
 
     // Assuming the Swagger page returns JSON data
+	console.log('before const swagger data');
     const swaggerData = response.data;
-    console.log('Received JSON data from API:', swaggerData);
+    console.log('Received JSON data from API:', res.json(swaggerData));
     // You can do further processing here if needed
     res.json(swaggerData);
   } catch (error) {
