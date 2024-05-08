@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios'); // Import Axios for making HTTP requests
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,10 +18,6 @@ app.post('/webhook', (req, res) => {
   latestData = req.body;
   console.log('Received JSON data:', latestData);
   res.status(200).send('Webhook received successfully');
-
-  // Send a response back to the sender system
-  // You can customize the response as needed
-  res.status(200).send('Webhook received successfully');
 });
 
 // Endpoint to serve the latest JSON data
@@ -28,6 +25,33 @@ app.get('/latest', (req, res) => {
   res.json(latestData);
 });
 
+// Endpoint to make a GET request to the Swagger page with Basic Authentication
+app.get('/swagger', async (req, res) => {
+  try {
+    // Encode username and password for Basic Authentication
+    const username = '90478305_003_TEST\AI';
+    const password = '1234';
+    const auth = Buffer.from(`${username}:${password}`).toString('base64');
+    
+    // Define headers with Basic Authentication
+    const headers = {
+      'Authorization': `Basic ${auth}`,
+      'Content-Type': 'application/json' // Adjust content type if needed
+    };
+
+    // Make a GET request to the Swagger page with defined headers
+    const response = await axios.get('https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1?documentType=CustomerOrder&storeId=DE01&customerId=HQ00100001', { headers });
+
+    // Assuming the Swagger page returns JSON data
+    const swaggerData = response.data;
+    console.log('Received JSON data from API:', swaggerData);
+    // You can do further processing here if needed
+    res.json(swaggerData);
+  } catch (error) {
+    console.error('Error fetching data from Swagger page:', error);
+    res.status(500).send('Error fetching data from Swagger page');
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
