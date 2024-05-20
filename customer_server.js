@@ -30,7 +30,7 @@ app.get('/swagger', async (req, res) => {
   console.log('inside swagger call, before call');
   try {
     // Encode username and password for Basic Authentication
-    const username = '90478305_003_TEST\AI';
+    const username = '90478305_003_TEST\\AI';
     const password = '1234';
     const auth = Buffer.from(`${username}:${password}`).toString('base64');
     
