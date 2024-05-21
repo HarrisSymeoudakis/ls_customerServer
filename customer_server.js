@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 let latestData = {}; // Variable to store the latest JSON data
-
+let returningData = {};
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // Update * to your specific origin if needed
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -19,6 +19,13 @@ app.post('/webhook', (req, res) => {
   latestData = req.body;
   console.log('Received JSON data:', latestData);
   res.status(200).send('Webhook received successfully');
+});
+
+app.post('/returning', (req, res) => {
+  // Assuming your JSON data is received in the req.body
+  returningData = req.body;
+  console.log('Received JSON data:', returningData);
+  res.status(200).send('Return received successfully');
 });
 
 // Endpoint to serve the latest JSON data
