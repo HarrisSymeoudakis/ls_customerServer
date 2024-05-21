@@ -21,12 +21,7 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received successfully');
 });
 
-app.post('/returning', (req, res) => {
-  // Assuming your JSON data is received in the req.body
-  returningData = req.body;
-  console.log('Received JSON data:', returningData);
-  res.status(200).send('Return received successfully');
-});
+
 
 // Endpoint to serve the latest JSON data
 app.get('/latest', (req, res) => {
