@@ -8,6 +8,7 @@ let latestData = {}; // Variable to store the latest JSON data
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // Update * to your specific origin if needed
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   next();
 });
 
