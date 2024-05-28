@@ -30,14 +30,14 @@ app.use(express.json());
 // Webhook endpoint to receive and store JSON data
 app.post('/webhook', (req, res) => {
   latestData = req.body;
-  console.log('Received JSON data:', latestData);
+  console.log('External Customer Form JSON data:', latestData);
 
   const customerId = latestData.customerId;
   if (!customerId) {
     return res.status(400).send('customerId not found in the request');
   }
 
-  res.status(200).send('Webhook received successfully');
+  res.status(200).send('External Customer Form JSON received successfully');
 });
 
 // Endpoint to serve the latest JSON data
@@ -47,11 +47,6 @@ app.get('/latest', (req, res) => {
 
 // Endpoint to make a GET request to the Swagger page with Basic Authentication
 app.get('/swagger/customerOrders', async (req, res) => {
-  const customerId = latestData.customerId;
-  if (!customerId) {
-    return res.status(400).send('customerId not available');
-  }
-
   try {
     // Construct the URL dynamically using the extracted customerId
     const baseUrl = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1';
@@ -62,15 +57,14 @@ app.get('/swagger/customerOrders', async (req, res) => {
     const response = await axios.get(url, { headers });
 
     // Assuming the Swagger page returns JSON data
-    console.log('before const swagger data');
     const swaggerData = response.data;
-    console.log('Received JSON data from API:', swaggerData);
+    console.log('Received JSON data from Customer Orders:', swaggerData);
 
     // Respond with the data received from the API
     res.json(swaggerData);
   } catch (error) {
-    console.error('Error fetching data from Swagger page:', error);
-    res.status(500).send('Error fetching data from Swagger page');
+    console.error('Error fetching data for customer orders:', error);
+    res.status(500).send('Error fetching data for customer orders');
   }
 });
 
@@ -79,18 +73,14 @@ app.get('/swagger/Addresses', async (req, res) => {
 	console.log('calling addresses');
   try {
   
-    // Construct the URL dynamically using the extracted customerId
-    const baseUrl = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1';
-    const documentType = 'CustomerOrder';
-    //const url = `${baseUrl}?documentType=${documentType}&customerId=${customerId}`;
-    const url = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/DE01000021/addresses/v1';
+    const url = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/${customerId}/addresses/v1';
 
     // Make a GET request to the Swagger page with defined headers
     const response = await axios.get(url, { headers });
 
     // Assuming the Swagger page returns JSON data
     const swaggerData = response.data;
-    console.log('Received JSON data from API:', swaggerData);
+    console.log('Received JSON data from Addresses:', swaggerData);
 
     // Respond with the data received from the API
     res.json(swaggerData);
