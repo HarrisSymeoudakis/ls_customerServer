@@ -71,10 +71,20 @@ app.get('/swagger/customerOrders', async (req, res) => {
 
 // ADDRESSES
 app.get('/swagger/Addresses', async (req, res) => {
-	console.log('calling addresses');
+  console.log('calling addresses');
   try {
-  
+    if (!customerId) {
+      return res.status(400).send('customerId not available. Ensure the webhook has been called.');
+    }
+
+    // Construct the URL dynamically using the extracted customerId
     const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/${customerId}/addresses/v1`;
+
+    // Define the headers for the request
+    const headers = {
+	  'Authorization': `Basic ${auth}`,
+	  'Content-Type': 'application/json' // Adjust content type if needed
+	};
 
     // Make a GET request to the Swagger page with defined headers
     const response = await axios.get(url, { headers });
