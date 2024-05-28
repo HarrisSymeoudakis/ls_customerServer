@@ -16,6 +16,7 @@ const headers = {
 };
 
 let latestData = {}; // Variable to store the latest JSON data
+let customerId = ''; 
 
 // Middleware to allow CORS
 app.use((req, res, next) => {
