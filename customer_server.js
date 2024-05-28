@@ -74,7 +74,7 @@ app.get('/swagger/Addresses', async (req, res) => {
 	console.log('calling addresses');
   try {
   
-    const url = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/${customerId}/addresses/v1';
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/${customerId}/addresses/v1`;
 
     // Make a GET request to the Swagger page with defined headers
     const response = await axios.get(url, { headers });
