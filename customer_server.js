@@ -59,6 +59,36 @@ app.get('/swagger/customerOrders', async (req, res) => {
 
     // Assuming the Swagger page returns JSON data
     const swaggerData = response.data;
+    console.log('Received JSON data from Customer Reservations:', swaggerData);
+
+    // Respond with the data received from the API
+    res.json(swaggerData);
+  } catch (error) {
+    console.error('Error fetching data for customer Reservations:', error);
+    res.status(500).send('Error fetching data for customer Reservations');
+  }
+});
+
+// Endpoint to make a GET request to the Swagger page with Basic Authentication
+app.get('/swagger/customerReservations', async (req, res) => {
+  try {
+	  if (!customerId) {
+      return res.status(400).send('customerId not available. Ensure the webhook has been called.');
+    }
+    / Construct the URL dynamically using the extracted customerId
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-reservations/v1?documentTypeId=CustomerReservation&customerId=${customerId}&searchDate.startDate=01%2F01%2F2022&searchDate.endDate=01%2F01%2F2030`;
+
+    // Define the headers for the request
+    const headers = {
+	  'Authorization': `Basic ${auth}`,
+	  'Content-Type': 'application/json' // Adjust content type if needed
+	};
+
+    // Make a GET request to the Swagger page with defined headers
+    const response = await axios.get(url, { headers });
+
+    // Assuming the Swagger page returns JSON data
+    const swaggerData = response.data;
     console.log('Received JSON data from Customer Orders:', swaggerData);
 
     // Respond with the data received from the API
