@@ -33,7 +33,7 @@ app.post('/webhook', (req, res) => {
   latestData = req.body;
   console.log('External Customer Form JSON data:', latestData);
 
-  const customerId = latestData.customerId;
+  customerId = latestData.customerId;
   if (!customerId) {
     return res.status(400).send('customerId not found in the request');
   }
