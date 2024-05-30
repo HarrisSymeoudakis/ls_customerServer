@@ -46,6 +46,36 @@ app.get('/latest', (req, res) => {
   res.json(latestData);
 });
 
+// Customer User-fields
+app.get('/swagger/CustomerUserFields', async (req, res) => {
+  try {
+	  if (!customerId) {
+      return res.status(400).send('customerId not available. Ensure the webhook has been called.');
+    }
+    
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/v2/${customerId}?fields=UserFields`;
+
+    // Define the headers for the request
+    const headers = {
+	  'Authorization': `Basic ${auth}`,
+	  'Content-Type': 'application/json' // Adjust content type if needed
+	};
+
+    // Make a GET request to the Swagger page with defined headers
+    const response = await axios.get(url, { headers });
+
+    // Assuming the Swagger page returns JSON data
+    const swaggerData = response.data;
+    console.log('Received JSON data from Customer User fields:', swaggerData);
+
+    // Respond with the data received from the API
+    res.json(swaggerData);
+  } catch (error) {
+    console.error('Error fetching data for customer User fields:', error);
+    res.status(500).send('Error fetching data for customer User fields');
+  }
+});
+
 // Endpoint to make a GET request to the Swagger page with Basic Authentication
 app.get('/swagger/customerOrders', async (req, res) => {
   try {
