@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "customer_server",
+=======
+  "name": "ls-customer node js server",
+>>>>>>> 0e9a5f279a106609c8555f4dc8a91122e588b091
   "version": "1.0.0",
   "description": "",
   "main": "customer_server.js",
