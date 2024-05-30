@@ -52,7 +52,7 @@ app.get('/swagger/customerOrders', async (req, res) => {
     // Construct the URL dynamically using the extracted customerId
     const baseUrl = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1';
     const documentType = 'CustomerOrder';
-    const url = `${baseUrl}?documentType=${documentType}&customerId=${customerId}`;
+    const url = `${baseUrl}?documentType=${documentType}&customerId=${customerId}&active=true`;
 
     // Make a GET request to the Swagger page with defined headers
     const response = await axios.get(url, { headers });
