@@ -233,6 +233,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
     };
 
     try {
+		console.log('JSON data back to LS Ext Form postData:', postData);
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -241,6 +242,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
             body: JSON.stringify(postData)
         });
         const data = await response.json();
+		console.log('JSON data back to LS Ext Form data after call:', data);
         res.status(200).json(data);
     } catch (error) {
         console.error('Error:', error);
