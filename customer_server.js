@@ -1,8 +1,8 @@
-const express = require('express');
-const axios = require('axios'); // Import Axios for making HTTP requests
+import axios from 'axios'; // Import Axios for making HTTP requests
 
-const fetch = require('node-fetch');
-const bodyParser = require('body-parser');
+import express from 'express';
+import fetch from 'node-fetch';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = process.env.PORT || 3000;

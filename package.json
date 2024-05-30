@@ -1,21 +1,12 @@
 {
-<<<<<<< HEAD
-  "name": "customer_server",
-=======
-  "name": "ls-customer node js server",
->>>>>>> 0e9a5f279a106609c8555f4dc8a91122e588b091
+  "name": "ls_customerServer",
   "version": "1.0.0",
-  "description": "",
-  "main": "customer_server.js",
+  "main": "customer_server.mjs",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node customer_server.js"
+    "start": "node customer_server.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "axios": "^1.5.1",
     "express": "^4.17.1",
     "node-fetch": "^3.0.0",
     "body-parser": "^1.19.0"
