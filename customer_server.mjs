@@ -225,7 +225,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
                     "countryIso2Code": "GR",
                     "countryLabel": "Greece"
                 },
-                "addressConsent": true,
+                "addressConsent": "true",
                 "qualityCode": null,
                 "languageIsoCode": "end"
             }
