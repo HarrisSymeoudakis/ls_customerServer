@@ -1,8 +1,8 @@
 import axios from 'axios'; // Import Axios for making HTTP requests
-
 import express from 'express';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -166,6 +166,13 @@ app.get('/swagger/Addresses', async (req, res) => {
 
 
 // --------------------- --------------------- SEND PAYLOAD BACK TO Livestore - External Customer form
+
+// Use CORS middleware
+app.use(cors({
+    origin: 'https://externalcustomerform.netlify.app', // Allow this origin
+    methods: ['GET', 'POST'], // Allow these methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allow these headers
+}));
 
 app.use(bodyParser.json());
 
