@@ -203,7 +203,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
             {
                 "phone": "555252",
                 "phoneType": "Mobile",
-                "phoneConsent": false,
+                "phoneConsent": "false",
 				"country": {
 					"countryIso2Code": "FR",
 					"countryIso3Code": "FR"
