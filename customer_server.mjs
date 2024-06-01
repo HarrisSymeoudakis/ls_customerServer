@@ -241,6 +241,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
+				'sessionId': sessionId,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(postData)
