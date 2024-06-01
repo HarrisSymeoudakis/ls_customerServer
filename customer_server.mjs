@@ -195,17 +195,21 @@ app.post('/api/PostBackExtForm', async (req, res) => {
             {
                 "email": "harris.symeoudakis@gmail.com",
                 "emailType": "Main",
-                "emailConsent": "DEM",
-                "qualityCode": null
+                "emailConsent": null,
+                "qualityCode": "1/5"
             }
         ],
         "phones": [
             {
                 "phone": "555252",
                 "phoneType": "Mobile",
-                "phoneConsent": "DEM",
-                "qualityCode": null
-            }
+                "phoneConsent": false,
+				"country": {
+					"countryIso2Code": "FR",
+					"countryIso3Code": "FR"
+				},
+				"qualityCode": "1/5"
+			}
         ],
         "postalAddresses": [
             {
@@ -226,7 +230,7 @@ app.post('/api/PostBackExtForm', async (req, res) => {
                     "countryLabel": "Greece"
                 },
                 "addressConsent": "true",
-                "qualityCode": null,
+                "qualityCode": "1/5",
                 "languageIsoCode": "end"
             }
         ]
