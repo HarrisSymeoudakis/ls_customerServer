@@ -255,6 +255,15 @@ app.post('/api/PostBackExtForm', async (req, res) => {
     }
 });
 
+// GET method
+app.get('/PostBackExtForm/redirect', (req, res) => {
+    const sessionId = req.query.sessionId;
+    console.log('GET sessionId received:', sessionId);
+
+    // Redirect to a certain webpage with the session ID
+    res.redirect(`https://retail-services.cegid.cloud/et/pos/pulsarcustomer/externalcustomer/callback?sessionId=${sessionId}`);
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
