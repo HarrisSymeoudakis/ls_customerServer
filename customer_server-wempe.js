@@ -1,4 +1,3 @@
-
 const express = require('express');
 const axios = require('axios'); // Import Axios for making HTTP requests
 
@@ -6,11 +5,11 @@ const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Encode username and password for Basic Authentication
-const username = '90571062_002_TEST\\Harris';
-const password = 'Cegid2';
+const username = '90478305_003_TEST\\AI';
+const password = '1234';
 const auth = Buffer.from(`${username}:${password}`).toString('base64');
 
 // Define headers with Basic Authentication
@@ -57,7 +56,7 @@ app.get('/swagger/CustomerUserFields', async (req, res) => {
       return res.status(400).send('customerId not available. Ensure the webhook has been called.');
     }
     
-    const url = `https://90571062-test-retail-ondemand.cegid.cloud/Y2/90571062_002_TEST/api/customers/v2/${customerId}?fields=UserFields`;
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/v2/${customerId}?fields=UserFields`;
 
     // Define the headers for the request
     const headers = {
@@ -84,7 +83,7 @@ app.get('/swagger/CustomerUserFields', async (req, res) => {
 app.get('/swagger/customerOrders', async (req, res) => {
   try {
     // Construct the URL dynamically using the extracted customerId
-    const baseUrl = 'https://90571062-test-retail-ondemand.cegid.cloud/Y2/90571062_002_TEST/api/customer-documents/v1';
+    const baseUrl = 'https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-documents/v1';
     const documentType = 'CustomerOrder';
     const url = `${baseUrl}?documentType=${documentType}&customerId=${customerId}&active=true&fields=DiscountsDetail`;
 
@@ -110,7 +109,7 @@ app.get('/swagger/customerReservations', async (req, res) => {
       return res.status(400).send('customerId not available. Ensure the webhook has been called.');
     }
     
-    const url = `https://90571062-test-retail-ondemand.cegid.cloud/Y2/90571062_002_TEST/api/customer-reservations/v1?documentTypeId=CustomerReservation&customerId=${customerId}&searchDate.startDate=01%2F01%2F2022&searchDate.endDate=01%2F01%2F2030`;
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customer-reservations/v1?documentTypeId=CustomerReservation&customerId=${customerId}&searchDate.startDate=01%2F01%2F2022&searchDate.endDate=01%2F01%2F2030`;
 
     // Define the headers for the request
     const headers = {
@@ -142,7 +141,7 @@ app.get('/swagger/Addresses', async (req, res) => {
     }
 
     // Construct the URL dynamically using the extracted customerId
-    const url = `https://90571062-test-retail-ondemand.cegid.cloud/Y2/90571062_002_TEST/api/customers/${customerId}/addresses/v1`;
+    const url = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/${customerId}/addresses/v1`;
 
     // Define the headers for the request
     const headers = {
