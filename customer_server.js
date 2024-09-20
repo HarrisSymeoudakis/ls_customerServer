@@ -46,8 +46,14 @@ app.patch('/api/customers/v2/:customerId', async (req, res) => {
 
 // Middleware to allow CORS
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // Update * to your specific origin if needed
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin", "*"); // Allow any origin. You can restrict this to your front-end's domain if needed
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS"); // Include PATCH method
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end(); // Handle preflight request
+  }
+  
   next();
 });
 
