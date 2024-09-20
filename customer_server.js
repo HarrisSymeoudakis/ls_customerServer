@@ -21,28 +21,7 @@ const headers = {
 let latestData = {}; // Variable to store the latest JSON data
 let customerId = ''; 
 
-app.patch('/api/customers/v2/:customerId', async (req, res) => {
-    const customerId = req.params.customerId;
-    const apiUrl = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/v2/${customerId}`;
 
-    try {
-        // Forward the request to the Cegid API
-        const response = await axios.patch(apiUrl, req.body, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        // Send the response back to the frontend
-        res.status(response.status).json(response.data);
-    } catch (error) {
-        // Handle errors and send error response back to the frontend
-        res.status(error.response ? error.response.status : 500).json({
-            message: error.message,
-            data: error.response ? error.response.data : null
-        });
-    }
-});
 
 // Middleware to allow CORS
 app.use((req, res, next) => {
@@ -77,6 +56,31 @@ app.post('/webhook', (req, res) => {
 app.get('/latest', (req, res) => {
   res.json(latestData);
 });
+
+app.patch('/api/customers/v2/:customerId', async (req, res) => {
+	console.log("mpika gia o patch");
+    const customerId = req.params.customerId;
+    const apiUrl = `https://90478305-partner-retail-ondemand.cegid.cloud/Y2/90478305_003_TEST/api/customers/v2/${customerId}`;
+
+    try {
+        // Forward the request to the Cegid API
+        const response = await axios.patch(apiUrl, req.body, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // Send the response back to the frontend
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        // Handle errors and send error response back to the frontend
+        res.status(error.response ? error.response.status : 500).json({
+            message: error.message,
+            data: error.response ? error.response.data : null
+        });
+    }
+});
+
 
 // Customer User-fields
 app.get('/swagger/CustomerUserFields', async (req, res) => {
